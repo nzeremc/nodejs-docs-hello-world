@@ -33,7 +33,7 @@ stages:
     - task: NodeTool@0
       inputs:
         versionSpec: '12-lts'
-- task: AzureRmWebAppDeployment@4
+- task: ArchiveFiles@2
   inputs:
     ConnectionType: 'AzureRM'
     azureSubscription: 'Azure Subscription(6ec3d23c-daf2-4342-a843-66c335fbb4d2)'
