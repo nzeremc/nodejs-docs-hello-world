@@ -41,7 +41,7 @@ stages:
     WebAppName: 'nodejs-cicd-4270'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
     RuntimeStack: 'NODE|12-lts'
-    displayName: 'Install Node.js'
+  displayName: 'Install Node.js'
 
     - script: |
         npm install
