@@ -33,6 +33,14 @@ stages:
     - task: NodeTool@0
       inputs:
         versionSpec: '12-lts'
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure Subscription(6ec3d23c-daf2-4342-a843-66c335fbb4d2)'
+    appType: 'webAppLinux'
+    WebAppName: 'nodejs-cicd-4270'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    RuntimeStack: 'NODE|12-lts'
       displayName: 'Install Node.js'
 
     - script: |
