@@ -1,19 +1,14 @@
-# Node.js Express Web App to Linux on Azure
-# Build a Node.js Express app and deploy it to Azure as a Linux web app.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
-
 trigger:
-- main
+- master
 
 variables:
 
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: 'b58bbcee-f279-4ae0-953a-e57e4ccdae4b'
-
+  azureSubscription: '6ec3d23c-daf2-4342-a843-66c335fbb4d2'
+  
   # Web app name
   webAppName: 'nodejs-cicd-4270'
-
+  
   # Environment name
   environmentName: 'nodejs-cicd-4270'
 
@@ -23,24 +18,16 @@ variables:
 stages:
 - stage: Build
   displayName: Build stage
-  jobs:
+  jobs:  
   - job: Build
     displayName: Build
     pool:
       vmImage: $(vmImageName)
 
-    steps:
-    - task: NodeTool@0
-      inputs:
-        versionSpec: '12.x'
-- task: ArchiveFiles@2
+steps:
+- task: NodeTool@0
   inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'Azure Subscription(6ec3d23c-daf2-4342-a843-66c335fbb4d2)'
-    appType: 'webAppLinux'
-    WebAppName: 'nodejs-cicd-4270'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    RuntimeStack: 'NODE|12-lts'
+    versionSpec: '12.x'
   displayName: 'Install Node.js'
 
 - script: |
@@ -69,14 +56,14 @@ stages:
   - deployment: Deploy
     displayName: Deploy
     environment: $(environmentName)
-    pool:
+    pool: 
       vmImage: $(vmImageName)
     strategy:
       runOnce:
         deploy:
-          steps:
+          steps:            
           - task: AzureWebApp@1
-            displayName: 'Azure Web App Deploy: nodejs-cicd-4270'
+            displayName: 'Azure Web App Deploy: nodejs-cicd-16353'
             inputs:
               azureSubscription: $(azureSubscription)
               appType: webAppLinux
